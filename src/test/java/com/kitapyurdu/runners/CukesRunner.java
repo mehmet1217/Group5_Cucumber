@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"
         },
         features = "src/test/resources/features",
-        glue = "src/test/java/com/kitapyurdu/step_definitions",
-        dryRun = true,
-        tags = ""
+        glue = "com/kitapyurdu/step_definitions",
+        dryRun = false,
+        tags = "@wip"
 )
 
 
