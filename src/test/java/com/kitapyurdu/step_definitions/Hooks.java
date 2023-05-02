@@ -1,5 +1,6 @@
 package com.kitapyurdu.step_definitions;
 
+import com.kitapyurdu.utilities.ConfigurationReader;
 import com.kitapyurdu.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Hooks {
     @Before //JAVA
     public void setUp() {
+        Driver.get().get(ConfigurationReader.get("url"));
         Driver.get().manage().window().maximize();
         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
