@@ -1,6 +1,6 @@
 Feature: Add Remove Product
 
-  @wip
+
   Scenario: Add some product to the cart and then remove them
     Given The user is on the main page
     When The user navigate to the "Tüm Kitaplar" and click

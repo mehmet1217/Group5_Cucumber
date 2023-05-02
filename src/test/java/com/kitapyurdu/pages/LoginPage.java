@@ -72,14 +72,14 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String username, String password){
-        getLoginPage();
+        //getLoginPage();
         emailInput.sendKeys(username);
         passwordInput.sendKeys(password);
         girisYapSubmit.click();
 //      understandBtn.click();
     }
 
-    public void verifyNOTLogin(){
-        Assert.assertTrue(errorMessage.getText().contains("E-Posta Adresi ya da şifreniz yanlış."));
+    public void verifyNOTLogin(String message){
+        Assert.assertTrue(errorMessage.getText().contains(message));
     }
 }
