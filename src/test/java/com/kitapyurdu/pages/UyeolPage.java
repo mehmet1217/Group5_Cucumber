@@ -1,7 +1,8 @@
 package com.kitapyurdu.pages;
 
 
-import com.kitapyurdu.utilities.ConfigurationReader;
+import com.kitapyurdu.utilities.BrowserUtils;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,6 +11,8 @@ public class UyeolPage extends BasePage {
 
     @FindBy(xpath = "//a[text()='Üye Ol']")
     public WebElement UyeolBtn;
+    @FindBy(xpath = "//*[.='Kabul Et']")
+    public WebElement understandBtn;
 
   @FindBy(xpath = "//h3[.='Hesap Oluştur']")
     public WebElement HesapOlustur;
@@ -32,25 +35,42 @@ public class UyeolPage extends BasePage {
     @FindBy(xpath = "//label[@for='agree']")
     public WebElement KisiselVerilerCheckBox;
 
-    @FindBy(css = "[for='is_campaign_newsletter']")
+    @FindBy(css = "(//div[@class='ky-checkbox-input'])[2]")
     public WebElement elektronikiletiCheckBox;
 
     @FindBy(xpath = "//button[text()='Üye Ol']")
-    public WebElement UyeOlBtn;
+    public WebElement UyeOlBtn2;
+    @FindBy(id = "jBox-overlay")
+    public WebElement warningMessage;
 
-    @FindBy(xpath = "//h1[text()='Hesabınız Oluşturuldu!']")
-    public WebElement HesabınızOluşturuldu;
-    @FindBy(xpath = "//a[text()='Anasayfaya Git']")
-    public WebElement AnasayfayaGitBtn;
+   @FindBy(className = "[class='ky-error']")
+   public WebElement existingMailAdress;
 
-    public void login() {
+//    @FindBy(id = "jBox-overlay")
+//    public WebElement warningMessage;
 
-        AdBox.sendKeys(ConfigurationReader.get("usernameyusuf"));
-        SoyadBox.sendKeys(ConfigurationReader.get("userlastnameYsf"));
-        EpostaBox.sendKeys(ConfigurationReader.get("usernameEmailYsf"));
-        SifreBox.sendKeys(ConfigurationReader.get("userpasswordYsf"));
-        SifreTekrariBox.sendKeys(ConfigurationReader.get("userpassword2Ysf"));
+//
+//    @FindBy(xpath = "//h1[text()='Hesabınız Oluşturuldu!']")
+//    public WebElement HesabınızOluşturuldu;
+//    @FindBy(xpath = "//a[text()='Anasayfaya Git']")
+//    public WebElement AnasayfayaGitBtn;
+
+    public void isDisplayedMtd(){
+        Assert.assertTrue(HesapOlustur.isDisplayed());
     }
 
+    public void register(String usernameyusuf, String userlastnameYsf, String usernameEmailYsf, String userpasswordYsf, String userpassword2) {
 
+        AdBox.sendKeys(usernameyusuf);
+        SoyadBox.sendKeys(userlastnameYsf);
+        EpostaBox.sendKeys(usernameEmailYsf);
+        SifreBox.sendKeys(userpasswordYsf);
+        SifreTekrariBox.sendKeys(userpassword2);
+        KisiselVerilerCheckBox.click();
+        BrowserUtils.waitFor(5);
+        warningMessage.click();
+        elektronikiletiCheckBox.click();
+        UyeOlBtn2.click();
+        existingMailAdress.isDisplayed();
+    }
 }
