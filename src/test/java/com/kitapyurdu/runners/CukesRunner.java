@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "com/kitapyurdu/step_definitions",
-        dryRun = false,
-        tags = "@wip"
+        dryRun =false,
+        tags = "@existing"
 )
 
 
