@@ -1,5 +1,6 @@
 package com.kitapyurdu.step_definitions;
 
+import com.kitapyurdu.pages.AllCategoriesUndAuthorsPage;
 import com.kitapyurdu.pages.SeachPage;
 import com.kitapyurdu.utilities.BrowserUtils;
 import com.kitapyurdu.utilities.ConfigurationReader;
@@ -12,6 +13,7 @@ import org.openqa.selenium.Keys;
 
 public class SearchProduct_StepDef {
     SeachPage seach = new SeachPage();
+    AllCategoriesUndAuthorsPage categorie = new AllCategoriesUndAuthorsPage();
 
     @Given("The user is on the main page")
     public void the_user_is_on_the_main_page() {
@@ -21,12 +23,15 @@ public class SearchProduct_StepDef {
 
     @When("The user navigate to the {string} and click")
     public void the_user_navigate_to_the_and_click(String string) {
+
         BrowserUtils.hover(seach.tumKitaplarHover);
         seach.tumKitaplarBtn.click();
+
     }
 
     @Then("The user viewed that {string} page loaded")
-    public void the_user_viewed_that_page_loaded(String string) {
+    public void the_user_viewed_that_page_loaded(String string) throws InterruptedException {
+
         Assert.assertEquals("Kitap",seach.kitapMessage.getText());
 
     }
